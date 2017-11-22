@@ -73,7 +73,7 @@ class Bubbles extends Component {
       this.state.min_count +
       Math.floor(Math.random() * (this.state.max_count + 1));
     // Creating bubbles
-    for (var i = 0; i < bubbleCount; i++) {
+    for (let i = 0; i < bubbleCount; i++) {
       // Position
       let pos = Math.floor(Math.random() * 101);
       // Size
@@ -89,13 +89,14 @@ class Bubbles extends Component {
       // Push to bubbles array
       bubbles.push(
         <BubbleWrapper
+          key={`${pos}-${size}-${delay}-${speed}-${blur}-bubble`}
           style={{
             left: pos + '%',
-            '-webkit-animation-duration': speed + 's',
-            'animation-duration': speed + 's',
-            '-webkit-animation-delay': delay + 's',
-            'animation-delay': delay + 's',
-            '-webkit-filter': 'blur(' + blur + 'px)',
+            'WebkitAnimationDuration': speed + 's',
+            'animationDuration': speed + 's',
+            'WebkitAnimationDelay': delay + 's',
+            'animationDelay': delay + 's',
+            'WebkitFilter': 'blur(' + blur + 'px)',
             filter: 'blur(' + blur + 'px)',
           }}>
           <Bubble

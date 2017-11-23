@@ -1,6 +1,4 @@
-<p align="center">
-  ![Manta Logo](./src/static/imgs/manta-illustration.png)
-</p>
+![Manta Logo](./src/static/imgs/manta-illustration.png)
 
 # Manta
 A desktop application for creating invoices with beautiful and customizable templates.

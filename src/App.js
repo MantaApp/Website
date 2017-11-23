@@ -16,7 +16,7 @@ injectGlobal`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding-top: 50px;
   min-height: 100%;
@@ -28,11 +28,18 @@ const Wrapper = styled.div`
 `;
 
 class App extends Component {
+  renderNoscript() {
+    return {
+      __html: `
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JF3TD7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      `,
+    };
+  }
   render() {
     return (
       <Router>
         <Wrapper>
-          <noscript dangerouslySetInnerHTML={createNoScript()} />
+          <noscript dangerouslySetInnerHTML={this.renderNoscript()}/>
           <Header />
           <Routes />
         </Wrapper>
@@ -42,10 +49,3 @@ class App extends Component {
 }
 
 export default App;
-
-function createNoScript() {
-  const script = `
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JF3TD7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  `;
-  return {__html: script};
-}

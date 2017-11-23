@@ -9,6 +9,7 @@ import fishesSVG from '../static/imgs/fishes.svg';
 
 const Wrapper = styled.div`
   margin-top: 40px;
+  padding: 0 20px;
   background-image: url(${bubblesSVG}), url(${fishesSVG});
   background-position: center 25%, center 65%;
   background-repeat: repeat-x, no-repeat;
@@ -16,8 +17,15 @@ const Wrapper = styled.div`
 `;
 
 const ButtonsGroup = styled.div`
-  margin: 20px auto;
-  button { margin: 0 5px }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  a { margin: 0 10px 10px 10px }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `
 
 const Screenshots = styled.div`
@@ -33,7 +41,6 @@ const Screenshots = styled.div`
   }
 `;
 
-
 class Intro extends Component {
   render() {
     return (
@@ -43,13 +50,12 @@ class Intro extends Component {
           Painless invoicing with stunning customizable templates.
         </p>
         <ButtonsGroup>
-          <a href="#" className="btn btn-lg btn-outline-light">
-            Read Intro Article
-          </a>
-          {' '}
           <a href="https://github.com/hql287/Manta/releases"
             className="btn btn-lg btn-success">
             Download for macOS
+          </a>
+          <a href="#" className="btn btn-lg btn-outline-light">
+            Read Intro Article
           </a>
         </ButtonsGroup>
         <p className="text-muted">

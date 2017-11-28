@@ -28,6 +28,9 @@ const Wrapper = styled.div`
 `;
 
 import LogoImg from './static/imgs/manta-illustration.png';
+import Favicon16 from './static/imgs/favicons/favicon-16x16.png';
+import Favicon32 from './static/imgs/favicons/favicon-32x32.png';
+import Favicon96 from './static/imgs/favicons/favicon-96x96.png';
 
 class App extends Component {
   renderNoscript() {
@@ -50,6 +53,9 @@ class App extends Component {
               content="A desktop application for creating invoices with beautiful and customizable templates"
             />
             <meta property="og:image" content={LogoImg} />
+            <link rel="icon" type="image/png" sizes="16x16" href={Favicon16}/>
+            <link rel="icon" type="image/png" sizes="32x32" href={Favicon32}/>
+            <link rel="icon" type="image/png" sizes="96x96" href={Favicon96}/>
           </Head>
           <noscript dangerouslySetInnerHTML={this.renderNoscript()} />
           <Header />

@@ -2,8 +2,6 @@
 import React, {Component} from 'react';
 import {ServerStyleSheet} from 'styled-components';
 
-import LogoImg from './src/static/imgs/manta-illustration.png';
-
 export default {
   // Site Props
   getSiteProps: () => ({
@@ -58,14 +56,6 @@ export default {
               rel="stylesheet"
               type="text/css"
             />
-            <meta property="og:url" content="https://manta.life" />
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="Manta App" />
-            <meta
-              property="og:description"
-              content="A desktop application for creating invoices with beautiful and customizable templates"
-            />
-            <meta property="og:image" content=`${LogoImg}` />
             <script dangerouslySetInnerHTML={createGTMScript()} />
           </Head>
           <Body>{children}</Body>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Router, Link} from 'react-static';
+import {Head, Router, Link} from 'react-static';
 import styled, {injectGlobal} from 'styled-components';
 import Routes from 'react-static-routes';
 import Header from './components/Header';
@@ -27,6 +27,8 @@ const Wrapper = styled.div`
   background: linear-gradient(to top, #4c3f73, #6c5b7b, #355c7d);
 `;
 
+import LogoImg from './static/imgs/manta-illustration.png';
+
 class App extends Component {
   renderNoscript() {
     return {
@@ -39,7 +41,17 @@ class App extends Component {
     return (
       <Router>
         <Wrapper>
-          <noscript dangerouslySetInnerHTML={this.renderNoscript()}/>
+          <Head>
+            <meta property="og:url" content="https://manta.life" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Manta App" />
+            <meta
+              property="og:description"
+              content="A desktop application for creating invoices with beautiful and customizable templates"
+            />
+            <meta property="og:image" content={LogoImg} />
+          </Head>
+          <noscript dangerouslySetInnerHTML={this.renderNoscript()} />
           <Header />
           <Routes />
         </Wrapper>

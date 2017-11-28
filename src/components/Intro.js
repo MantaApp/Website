@@ -1,6 +1,7 @@
 // Libs
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import SocialBtns from '../components/SocialBtns';
 
 // Images
 import mainWindow from '../static/imgs/screenshots/mainWindow.png';
@@ -64,6 +65,7 @@ class Intro extends Component {
             Windows
           </a>.
         </p>
+        <SocialBtns/>
         <Screenshots>
           <img
             src={mainWindow}

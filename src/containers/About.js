@@ -50,17 +50,16 @@ const Content = styled.div`
     }
   }
   a {
-    color: #F9D548;
+    color: #f9d548;
   }
 `;
 
-const Caption = styled.p`
+const Note = styled.p`
   margin-top: 20px;
-  color: #B4B7BA;
+  color: #b4b7ba;
   font-size: 90%;
+  padding: 0 40px;
 `;
-
-const VideoContainer = styled.div``;
 
 const input1 = `
   The name of this project was inspired by the movie
@@ -70,8 +69,8 @@ const input1 = `
   be considered the world’s largest manta fishing site.
 
   Villagers here have conducted traditional manta hunts for many
-  generations, but with the arrival of the gill-plate trade in the early
-  2000’s, the community transformed to a full-scale commercial fishery,
+  generations, but with the emergencence of the gill-plate trade in the early
+  2000’s, the community changed to a full-scale commercial fishery,
   landing over a thousand mantas in a single season and sending
   the manta population into a downward spiral.
 
@@ -90,18 +89,9 @@ const input1 = `
     [International Union for Conservation of Nature](https://www.iucn.org/) to
     learn more about their works and donate if you can.
   - Share this page to let more people know about these issues.
-  - Also, if you're working on an open source project and having a difficult time
-  picking a name for it, consider my strategy.
 
-Before you go, here's a beautiful video and music about Plankton.
-`;
-
-const input2 = `
-  Some articles to learn more about plankton:
-  - [Source of Half Earth’s Oxygen Gets Little Credit](https://news.nationalgeographic.com/news/2004/06/0607_040607_phytoplankton.html)
-  - [Bottoms up: how whale poop helps feed the ocean](http://theconversation.com/bottoms-up-how-whale-poop-helps-feed-the-ocean-27913)
-  - [Scientists want you to know plankton is not just whale food | Reuters](https://www.reuters.com/article/us-science-plankton/scientists-want-you-to-know-plankton-is-not-just-whale-food-idUSKBN0O62G120150522)
-  - [How ocean plankton helps us breathing](https://thewildswimmingbrothers.com/features/how-ocean-plankton-helps-us-breathing)
+Also, if you're working on an open source project and having a difficult time
+  picking a name for it, please do consider this naming strategy.
 `;
 
 export default getSiteProps(() => (
@@ -111,17 +101,22 @@ export default getSiteProps(() => (
     </Head>
     <Content>
       <h1>About</h1>
-      <SocialBtns/>
+      <SocialBtns />
+      <Video videoId="9FttNi9-S1E" height={450} width={800} />
+      <Note>
+        Original song “ONE CANDLE” written and performed by Academy Award®
+        nominated composer J. RALPH and SIA for the feature documentary “Racing
+        Extinction” by Oscar winning director Louie Psihoyos (The Cove).
+        Co-Produced by Arthur Pingrey Ⓒ Ⓟ 2015 Rumor Mill Records.
+      </Note>
       <ReactMarkdown source={input1} />
-      <Video videoId="f1JiJhWkM9M" height={450} width={800} />
-      <Caption>
-        2016 Oscar® nominated Best Original Song “MANTA RAY” written and
-        performed by Academy Award® nominated composer J. RALPH and Academy
-        Award® Nominated artist ANOHNI (F.K.A. ANTONY of Antony and the
-        Johnsons) for the feature documentary “Racing Extinction” by Oscar
-        winning director Louie Psihoyos (The Cove).{' '}
-      </Caption>
-      <ReactMarkdown source={input2} />
+      <Note>
+        This product is not sponsored by or affiliated with any organization
+        mentioned above. All information used in the app by default is for demo
+        purpose only. All content, product, and company names are trademarks™ or
+        registered® trademarks of their respective holders.
+      </Note>
     </Content>
+    <hr />
   </Wrapper>
 ));

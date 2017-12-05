@@ -13,6 +13,18 @@ injectGlobal`
   }
 `;
 
+const Copyrights = styled.p`
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #C4C8CC;
+  a {
+    color: #F9D548;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,6 +72,9 @@ class App extends Component {
           <noscript dangerouslySetInnerHTML={this.renderNoscript()} />
           <Header />
           <Routes />
+          <Copyrights>
+            All rights reserved &copy; 2017. Contact <a href="mailto:hi@manta.life">hi@manta.life</a>
+          </Copyrights>
         </Wrapper>
       </Router>
     );

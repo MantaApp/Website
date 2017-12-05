@@ -31,9 +31,6 @@ function Header() {
         <Link style={LinkStyle} to="/">
           Home
         </Link>
-        <Link style={LinkStyle} to="/features">
-          Features
-        </Link>
         <Link style={LinkStyle} to="/about">
           About
         </Link>

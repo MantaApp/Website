@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import SocialBtns from '../components/SocialBtns';
+import {Link} from 'react-static';
 
 // Images
 import mainWindow from '../static/imgs/screenshots/mainWindow.png';
@@ -22,12 +23,14 @@ const ButtonsGroup = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px auto;
-  a { margin: 0 10px 10px 10px }
+  a {
+    margin: 0 10px 10px 10px;
+  }
 
   @media (max-width: 700px) {
     flex-direction: column;
   }
-`
+`;
 
 const Screenshots = styled.div`
   padding: 0 20px;
@@ -38,9 +41,53 @@ const Screenshots = styled.div`
     display: block;
     clear: both;
     margin: 50px auto;
-    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
 `;
+
+function getOSName() {
+  let OSName = 'unknown';
+  if (navigator.appVersion.indexOf('Win') !== -1) OSName = 'Windows';
+  if (navigator.appVersion.indexOf('Mac') !== -1) OSName = 'MacOS';
+  if (navigator.appVersion.indexOf('Linux') !== -1) OSName = 'Linux';
+  return OSName;
+}
+
+function setDownloadBtn() {
+  const osName = getOSName();
+  const macBtn = (
+    <a
+      className="btn btn-lg btn-success"
+      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-1.0.0.dmg">
+      Download for Mac
+    </a>
+  );
+  const winBtn = (
+    <a
+      className="btn btn-lg btn-success"
+      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-Setup-1.0.0.exe">
+      Download for Windows
+    </a>
+  );
+  const linuxBtn = (
+    <a
+      className="btn btn-lg btn-success"
+      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta_1.0.0_amd64.deb">
+      Download for Windows
+    </a>
+  );
+  switch (osName) {
+    case 'Windows': {
+      return winBtn;
+    }
+    case 'Linux': {
+      return linuxBtn;
+    }
+    default: {
+      return macBtn;
+    }
+  }
+}
 
 class Intro extends Component {
   render() {
@@ -51,27 +98,21 @@ class Intro extends Component {
           Painless invoicing with stunning customizable templates.
         </p>
         <ButtonsGroup>
-          <a href="https://github.com/hql287/Manta/releases"
-            className="btn btn-lg btn-success">
-            Download for macOS
-          </a>
-          <a href="#" className="btn btn-lg btn-outline-light">
-            Read Intro Article
+          {setDownloadBtn()}
+          <a
+            href="https://github.com/hql287/Manta/releases"
+            className="btn btn-lg btn-outline-light">
+            Download for other OS
           </a>
         </ButtonsGroup>
         <p className="text-muted">
-          Download for{' '}
-          <a href="https://github.com/hql287/Manta/releases" className="text-warning">
-            Windows
-          </a>.
+          <Link to="/about" className="text-warning">
+            Why do you name this app Manta?
+          </Link>
         </p>
-        <SocialBtns/>
+        <SocialBtns />
         <Screenshots>
-          <img
-            src={mainWindow}
-            alt="mainWindow"
-            className="mainWindowImg"
-          />
+          <img src={mainWindow} alt="mainWindow" className="mainWindowImg" />
         </Screenshots>
       </Wrapper>
     );

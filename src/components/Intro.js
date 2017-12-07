@@ -108,9 +108,9 @@ class Intro extends Component {
         <ButtonsGroup>
           {this.setDownloadBtn()}
           <a
-            href="https://github.com/hql287/Manta/releases"
+            href="https://github.com/hql287/Manta"
             className="btn btn-lg btn-outline-light">
-            Download for other OS
+            View Project on GitHub
           </a>
         </ButtonsGroup>
         <p className="text-muted">

@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   background: linear-gradient(to top, #4c3f73, #6c5b7b, #355c7d);
 `;
 
-import LogoImg from './static/imgs/manta-illustration.png';
+import LogoImg from './static/imgs/manta-app-logo.png';
 import Favicon16 from './static/imgs/favicons/favicon-16x16.png';
 import Favicon32 from './static/imgs/favicons/favicon-32x32.png';
 import Favicon96 from './static/imgs/favicons/favicon-96x96.png';

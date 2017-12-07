@@ -62,15 +62,13 @@ class Bubbles extends Component {
       max_size: 15,
       min_count: 6,
       max_count: 8,
+      isMobile: false,
     };
-    this.isMobileDevice = this.isMobileDevice.bind(this);
   }
 
-  isMobileDevice() {
-    return (
-      typeof window.orientation !== 'undefined' ||
-      navigator.userAgent.indexOf('IEMobile') !== -1
-    );
+  componentDidMount() {
+    let isMobile = typeof window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1;
+    this.setState({ isMobile });
   }
 
   bubbles() {
@@ -119,7 +117,7 @@ class Bubbles extends Component {
   }
 
   render() {
-    return this.isMobileDevice() ? null : (
+    return this.state.isMobile ? null : (
       <BubblesContainer>{this.bubbles()}</BubblesContainer>
     );
   }

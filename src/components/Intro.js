@@ -45,51 +45,59 @@ const Screenshots = styled.div`
   }
 `;
 
-function getOSName() {
-  let OSName = 'unknown';
-  if (navigator.appVersion.indexOf('Win') !== -1) OSName = 'Windows';
-  if (navigator.appVersion.indexOf('Mac') !== -1) OSName = 'MacOS';
-  if (navigator.appVersion.indexOf('Linux') !== -1) OSName = 'Linux';
-  return OSName;
-}
+class Intro extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { osName: 'macOS' };
+    this.setDownloadBtn = this.setDownloadBtn.bind(this);
+  }
 
-function setDownloadBtn() {
-  const osName = getOSName();
-  const macBtn = (
-    <a
-      className="btn btn-lg btn-success"
-      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-1.0.0.dmg">
-      Download for Mac
-    </a>
-  );
-  const winBtn = (
-    <a
-      className="btn btn-lg btn-success"
-      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-Setup-1.0.0.exe">
-      Download for Windows
-    </a>
-  );
-  const linuxBtn = (
-    <a
-      className="btn btn-lg btn-success"
-      href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta_1.0.0_amd64.deb">
-      Download for Windows
-    </a>
-  );
-  switch (osName) {
-    case 'Windows': {
-      return winBtn;
-    }
-    case 'Linux': {
-      return linuxBtn;
-    }
-    default: {
-      return macBtn;
+  componenDidMount() {
+    let osName = 'unknown';
+    const osInfo = window.navigator.appVersion;
+    if (osInfo.includes('Mac')) osName = 'macOS';
+    if (osInfo.includes('Win')) osName = 'Windows';
+    if (osInfo.includes('Linux')) osName = 'Linux';
+    this.setState({
+      osName
+    });
+  }
+
+  setDownloadBtn() {
+    const macBtn = (
+      <a
+        className="btn btn-lg btn-success"
+        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-1.0.0.dmg">
+        Download for Mac
+      </a>
+    );
+    const winBtn = (
+      <a
+        className="btn btn-lg btn-success"
+        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-Setup-1.0.0.exe">
+        Download for Windows
+      </a>
+    );
+    const linuxBtn = (
+      <a
+        className="btn btn-lg btn-success"
+        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta_1.0.0_amd64.deb">
+        Download for Windows
+      </a>
+    );
+    switch (this.state.osName) {
+      case 'Windows': {
+        return winBtn;
+      }
+      case 'Linux': {
+        return linuxBtn;
+      }
+      default: {
+        return macBtn;
+      }
     }
   }
-}
 
-class Intro extends Component {
   render() {
     return (
       <Wrapper>
@@ -98,7 +106,7 @@ class Intro extends Component {
           Painless invoicing with stunning customizable templates.
         </p>
         <ButtonsGroup>
-          {setDownloadBtn()}
+          {this.setDownloadBtn()}
           <a
             href="https://github.com/hql287/Manta/releases"
             className="btn btn-lg btn-outline-light">

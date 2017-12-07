@@ -35,7 +35,6 @@ const BubblesContainer = styled.div`
   bottom: 0;
 `;
 
-
 const BubbleWrapper = styled.div`
   animation: ${rise} 4s cubic-bezier(0.47, 0, 0.745, 0.715) 0s infinite;
   position: absolute;
@@ -64,6 +63,14 @@ class Bubbles extends Component {
       min_count: 6,
       max_count: 8,
     };
+    this.isMobileDevice = this.isMobileDevice.bind(this);
+  }
+
+  isMobileDevice() {
+    return (
+      typeof window.orientation !== 'undefined' ||
+      navigator.userAgent.indexOf('IEMobile') !== -1
+    );
   }
 
   bubbles() {
@@ -92,11 +99,11 @@ class Bubbles extends Component {
           key={`${pos}-${size}-${delay}-${speed}-${blur}-bubble`}
           style={{
             left: pos + '%',
-            'WebkitAnimationDuration': speed + 's',
-            'animationDuration': speed + 's',
-            'WebkitAnimationDelay': delay + 's',
-            'animationDelay': delay + 's',
-            'WebkitFilter': 'blur(' + blur + 'px)',
+            WebkitAnimationDuration: speed + 's',
+            animationDuration: speed + 's',
+            WebkitAnimationDelay: delay + 's',
+            animationDelay: delay + 's',
+            WebkitFilter: 'blur(' + blur + 'px)',
             filter: 'blur(' + blur + 'px)',
           }}>
           <Bubble
@@ -112,7 +119,9 @@ class Bubbles extends Component {
   }
 
   render() {
-    return <BubblesContainer>{this.bubbles()}</BubblesContainer>;
+    return this.isMobileDevice() ? null : (
+      <BubblesContainer>{this.bubbles()}</BubblesContainer>
+    );
   }
 }
 

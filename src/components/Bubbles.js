@@ -33,6 +33,7 @@ const BubblesContainer = styled.div`
   width: 100%;
   height: 50%;
   bottom: 0;
+  pointer-events: none;
 `;
 
 const BubbleWrapper = styled.div`

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://d26dzxoao6i3hh.cloudfront.net/items/070G2F0z433t0F1y3W0j/manta-logo.png?v=3dc70c3c" alt="Manta App Logo" width="200" height="auto"/>
+  <img src="https://d26dzxoao6i3hh.cloudfront.net/items/0M0W110L142j0t2H0W2X/manta-logo.svg" alt="Manta App Logo" width="180" height="auto"/>
 </p>
 
 # Manta

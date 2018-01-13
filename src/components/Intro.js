@@ -67,22 +67,22 @@ class Intro extends Component {
     const macBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-1.0.0.dmg">
+        href="https://github.com/hql287/Manta/releases/download/v1.1.0/Manta-1.1.0.dmg">
         Download for Mac
       </a>
     );
     const winBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-Setup-1.0.0.exe">
+        href="https://github.com/hql287/Manta/releases/download/v1.1.0/Manta.Setup.1.1.0.exe">
         Download for Windows
       </a>
     );
     const linuxBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta_1.0.0_amd64.deb">
-        Download for Windows
+        href="https://github.com/hql287/Manta/releases/download/v1.1.0/Manta_1.1.0_amd64.deb">
+        Download for Linux
       </a>
     );
     switch (this.state.osName) {

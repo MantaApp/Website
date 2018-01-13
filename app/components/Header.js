@@ -11,10 +11,6 @@ const Nav = styled.nav`
     margin: 0 10px;
   }
 `;
-const StyledLink = styled(Link)`
-  color: red;
-  background: blue;
-`
 
 
 function Header() {

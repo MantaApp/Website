@@ -1,4 +1,5 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import React, { Component } from 'react'
+import Head from 'next/head'
 import { ServerStyleSheet } from 'styled-components'
 import styled, {injectGlobal} from 'styled-components';
 import Header from '../components/Header';
@@ -39,13 +40,12 @@ const Wrapper = styled.div`
 `;
 
 
-export default class MyDocument extends Document {
+export default class Layout extends Component {
   static getInitialProps ({ renderPage }) {
     const sheet = new ServerStyleSheet()
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
-    const title = 'Overview - Manta App';
-    return { ...page, styleTags, title }
+    return { ...page, styleTags }
   }
 
   renderNoscript() {
@@ -58,9 +58,9 @@ export default class MyDocument extends Document {
 
   render () {
     return (
-      <html>
+      <div>
         <Head>
-          <title>{this.props.title}</title>
+          <title>{this.props.title} - Manta App </title>
           <meta property="og:url" content="https://manta.life" />
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Manta App" />
@@ -68,6 +68,7 @@ export default class MyDocument extends Document {
               property="og:description"
               content="A desktop application for creating invoices with beautiful and customizable templates"
             />
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <meta property="og:image" content="static/imgs/manta-app-logo.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="static/imgs/favicons/favicon-16x16.png"/>
             <link rel="icon" type="image/png" sizes="32x32" href="static/imgs/favicons/favicon-32x32.png"/>
@@ -77,18 +78,20 @@ export default class MyDocument extends Document {
           <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,600&amp;subset=latin-ext" rel="stylesheet" type="text/css"/>
          
         </Head>
-        <body>
           <Wrapper>
             <Header />
-            <Main />
+             {this.props.children}
             <Copyrights>
               All rights reserved &copy; 2017. Contact <a href="mailto:hi@manta.life">hi@manta.life</a>
             </Copyrights>
           </Wrapper>
-          <NextScript />
           <noscript dangerouslySetInnerHTML={this.renderNoscript()} />
-        </body>
-      </html>
+      </div>
     )
   }
+}
+
+
+Layout.defaultProps = {
+  title : 'Overview',
 }

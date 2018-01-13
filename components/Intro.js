@@ -70,6 +70,10 @@ class Intro extends Component {
   }
 
   setDownloadBtn(){
+
+    // Todo
+    // https://api.github.com/repos/hql287/Manta/releases?per_page=100
+
     const macBtn = (
       <a
         className="btn btn-lg btn-success"

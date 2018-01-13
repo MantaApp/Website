@@ -41,19 +41,23 @@ const Wrapper = styled.div`
 
 
 export default class Layout extends Component {
-  static getInitialProps ({ renderPage }) {
-    const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
-    const styleTags = sheet.getStyleElement()
-    return { ...page, styleTags }
-  }
-
   renderNoscript() {
     return {
       __html: `
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5JF3TD7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
       `,
     };
+  }
+
+  createGTMScript() {
+    const gtmScript = `
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-5JF3TD7');
+    `;
+    return {__html: gtmScript};
   }
 
   render () {
@@ -73,10 +77,18 @@ export default class Layout extends Component {
             <link rel="icon" type="image/png" sizes="16x16" href="static/imgs/favicons/favicon-16x16.png"/>
             <link rel="icon" type="image/png" sizes="32x32" href="static/imgs/favicons/favicon-32x32.png"/>
             <link rel="icon" type="image/png" sizes="96x96" href="static/imgs/favicons/favicon-96x96.png"/>
-          {this.props.styleTags}
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossOrigin="anonymous"/>
-          <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,600&amp;subset=latin-ext" rel="stylesheet" type="text/css"/>
-         
+          <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+              integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+              crossOrigin="anonymous"
+            />
+            <link
+              href="https://fonts.googleapis.com/css?family=Titillium+Web:300,600&amp;subset=latin-ext"
+              rel="stylesheet"
+              type="text/css"
+            />
+            <script dangerouslySetInnerHTML={this.createGTMScript()} />
         </Head>
           <Wrapper>
             <Header />

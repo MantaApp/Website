@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 import Video from '../components/Video';
 import ReactMarkdown from 'react-markdown';

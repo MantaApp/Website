@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
 
 import Video from '../components/Video';
 import ReactMarkdown from 'react-markdown';
@@ -88,9 +88,16 @@ Also, if you're working on an open source project and having a difficult time
 `;
 
 export default class About extends Component {
+  static getInitialProps ({ title }) {
+    return { title }
+  }
+
    render(){
-    return <Layout title={this.props.title}> 
+    return(
       <Wrapper>
+        <Head>
+          <title>{this.props.title} - Manta App </title>
+        </Head>
         <Content>
           <h1>About</h1>
           <SocialBtns />
@@ -110,8 +117,7 @@ export default class About extends Component {
           </Note>
         </Content>
         <hr />
-      </Wrapper>
-    </Layout>
+      </Wrapper>)
   }
 
 }

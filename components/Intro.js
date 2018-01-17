@@ -9,11 +9,11 @@ import platform from 'platform';
 const Wrapper = styled.div`
   margin-top: 40px;
   padding: 0 20px;
-  width:100%;
   background-image: url('/static/imgs/bubbles.svg'), url('/static/imgs/fishes.svg');
   background-position: center 25%, center 65%;
   background-repeat: repeat-x, no-repeat;
   text-align: center;
+  min-height: 100%;
 `;
 
 const ButtonsGroup = styled.div`

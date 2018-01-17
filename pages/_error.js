@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import Layout from '../components/Layout'
 import Bubbles from '../components/Bubbles'
 
 const Wrapper = styled.div`
@@ -18,15 +17,14 @@ const Message = styled.div`
 export default class Error extends React.Component {
 
   render() {
-    return <Layout title={this.props.title}>
+    return(
     <Wrapper>
         <Message>
           <h1>Sorry, nothing here!</h1>
           <p>The page you're looking for doesn't exist!</p>
         </Message>
         <Bubbles />
-    </Wrapper>
-  </Layout>
+    </Wrapper>)
   }
 }
 

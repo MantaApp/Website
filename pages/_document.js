@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
-import Head from 'next/head'
+import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 import styled, {injectGlobal} from 'styled-components';
 import Header from '../components/Header';
 
 injectGlobal`
   html, body {
+    width:100%;
     height: 100%;
-  }
-  #root {
-    height: 100vh;
   }
 `;
 
@@ -39,8 +36,19 @@ const Wrapper = styled.div`
   background: linear-gradient(to top, #4c3f73, #6c5b7b, #355c7d);
 `;
 
+const Content = styled(Main)`
+  width:100% !important;
+`
 
-export default class Layout extends Component {
+export default class MyDocument extends Document {
+  static getInitialProps ({ renderPage, title }) {
+    const { head } = renderPage()
+    const sheet = new ServerStyleSheet()
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
+    const styleTags = sheet.getStyleElement()
+    return { ...page, head, styleTags }
+  }
+
   renderNoscript() {
     return {
       __html: `
@@ -62,8 +70,8 @@ export default class Layout extends Component {
 
   render () {
     return (
-      <div>
-        <Head>
+      <html>
+          <Head>
           <title>{this.props.title} - Manta App </title>
           <meta property="og:url" content="https://manta.life" />
             <meta property="og:type" content="website" />
@@ -89,21 +97,24 @@ export default class Layout extends Component {
               type="text/css"
             />
             <script dangerouslySetInnerHTML={this.createGTMScript()} />
+          {this.props.styleTags}
         </Head>
-          <Wrapper>
+        <body>
+            <Wrapper>
             <Header />
-             {this.props.children}
+            <Content />
             <Copyrights>
               All rights reserved &copy; 2017. Contact <a href="mailto:hi@manta.life">hi@manta.life</a>
             </Copyrights>
           </Wrapper>
+          <NextScript />
           <noscript dangerouslySetInnerHTML={this.renderNoscript()} />
-      </div>
+        </body>
+      </html>
     )
   }
 }
 
-
-Layout.defaultProps = {
-  title : 'Overview',
+MyDocument.defaultProps = {
+    title: 'Overview'
 }

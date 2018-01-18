@@ -13,7 +13,7 @@ export default class Home extends Component {
 
   render(){
     return <Wrapper>
-      <Intro />
+      <Intro/>
       <Bubbles />
       </Wrapper>
   }

@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import SocialBtns from './SocialBtns';
 import Link from 'next/link'
 import platform from 'platform';
+import fetch from 'isomorphic-unfetch'
+import { platformCheck } from '../util';
 
 
 const Wrapper = styled.div`
   margin-top: 40px;
   padding: 0 20px;
-  background-image: url('/static/imgs/bubbles.svg'), url('/static/imgs/fishes.svg');
+  background-image: url('static/imgs/bubbles.svg'), url('static/imgs/fishes.svg');
   background-position: center 25%, center 65%;
   background-repeat: repeat-x, no-repeat;
   text-align: center;
@@ -45,16 +47,41 @@ const Screenshots = styled.div`
 class Intro extends Component {
   constructor(props) {
     super(props);
-    this.state = { osName: 'macOS' };
-    this.setDownloadBtn = this.setDownloadBtn.bind(this);
+    this.state = { 
+      osName: 'macOS',
+      platforms: null
+    };
+
   }
 
-  static getInitialProps({ res, req }) {
-    console.log(res)
-    return this.props;
-  }
+  componentWillMount(){
+    fetch('https://api.github.com/repos/hql287/Manta/releases')
+    .then(res => res.json())
+    .then(result => {
 
+      const last_relase = result[0];
+      const platforms = {};
+      for (const asset of last_relase.assets) {
+        const { name, browser_download_url, url, content_type, size } = asset
+        const platform = platformCheck(name)  
+        if(platform){
+          platforms[platform] = {
+            name,
+            api_url: url,
+            url: browser_download_url,
+            content_type,
+            size: Math.round(size / 1000000 * 10) / 10
+          }
+       }
+      }
+
+      this.setState({platforms});
+
+    })
+  }
+  
   componentDidMount() { 
+    
     let osName='unknown';
     const osInfo = platform.os.family;
     if (osInfo.includes('Mac')) osName = 'macOS';
@@ -64,34 +91,32 @@ class Intro extends Component {
       osName
     });
 
-    this.setState({
-      osName
-    });
   }
 
-  setDownloadBtn(){
+  setDownloadBtn = () =>{
 
-    // Todo
-    // https://api.github.com/repos/hql287/Manta/releases?per_page=100
+    if(!this.state.platforms){
+      return null
+    }
 
     const macBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-1.0.0.dmg">
+        href={(this.state.platforms.dmg ? this.state.platforms.dmg.url : null)}>
         Download for Mac
       </a>
     );
     const winBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta-Setup-1.0.0.exe">
+        href={(this.state.platforms.exe ? this.state.platforms.exe.url : null)}>
         Download for Windows
       </a>
     );
     const linuxBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.0.0/Manta_1.0.0_amd64.deb">
+        href={(this.state.platforms.deb ? this.state.platforms.deb.url : null)}>
         Download for Linux
       </a>
     );
@@ -109,6 +134,7 @@ class Intro extends Component {
   }
 
   render() {
+
     return (
       <Wrapper>
         <h1>Meet Manta</h1>
@@ -116,8 +142,7 @@ class Intro extends Component {
           Painless invoicing with stunning customizable templates.
         </p>
         <ButtonsGroup>
-          {this.setDownloadBtn()}
-          
+          {this.setDownloadBtn()}          
         <Link href="https://github.com/hql287/Manta" > 
             <a className="btn btn-lg btn-outline-light">
             View Project on GitHub 
@@ -140,5 +165,6 @@ class Intro extends Component {
     );
   }
 }
+
 
 export default Intro;

@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.1.5",
+    "isomorphic-unfetch": "^2.0.0",
     "next": "latest",
+    "node-fetch": "^1.7.3",
     "platform": "^1.3.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

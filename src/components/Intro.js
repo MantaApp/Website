@@ -67,21 +67,21 @@ class Intro extends Component {
     const macBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.1.2/Manta-1.1.2.dmg">
+        href="https://github.com/hql287/Manta/releases/download/v1.1.3/Manta-1.1.3.dmg">
         Download for Mac
       </a>
     );
     const winBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.1.2/Manta.Setup.1.1.2.exe">
+        href="https://github.com/hql287/Manta/releases/download/v1.1.3/Manta.Setup.1.1.3.exe">
         Download for Windows
       </a>
     );
     const linuxBtn = (
       <a
         className="btn btn-lg btn-success"
-        href="https://github.com/hql287/Manta/releases/download/v1.1.2/Manta-1.1.2-x86_64.AppImage">
+        href="https://github.com/hql287/Manta/releases/download/v1.1.3/Manta-1.1.3-x86_64.AppImage">
         Download for Linux
       </a>
     );

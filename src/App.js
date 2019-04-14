@@ -73,8 +73,8 @@ class App extends Component {
           <Header />
           <Routes />
           <Copyrights>
-            All rights reserved &copy; 2017. Contact{' '}
-            <a href="mailto:hi@manta.life">hi@manta.life</a>
+            All rights reserved &copy; 2019. Contact{' '}
+            <a href="mailto:hi@getmanta.app">hi@getmanta.app</a>
           </Copyrights>
         </Wrapper>
       </Router>
